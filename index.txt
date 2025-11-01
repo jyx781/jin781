@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>生日快乐 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: "Comic Sans MS", cursive;
+    }
+    h1 {
+      font-size: 3em;
+      color: white;
+      text-shadow: 2px 2px 6px #ff4081;
+      animation: pop 1s ease-in-out infinite alternate;
+    }
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+    .btn {
+      margin-top: 40px;
+      padding: 15px 40px;
+      background-color: #ff4081;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #ff79a7;
+      transform: scale(1.05);
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: hsl(var(--hue), 70%, 60%);
+      top: -10px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 生日快乐！🎂</h1>
+  <button class="btn" onclick="openWeChat()">💌 点我打开微信</button>
+
+  <script>
+    // 🎊 彩带动画
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.setProperty("--hue", Math.random() * 360);
+      confetti.style.animationDuration = 3 + Math.random() * 2 + "s";
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 5000);
+    }
+    setInterval(createConfetti, 150);
+
+    // 🎁 点击按钮打开微信
+    function openWeChat() {
+      window.location.href = "weixin://"; // 打开微信
+    }
+  </script>
+</body>
+</html>
